@@ -1,0 +1,58 @@
+title: "Smart Home Dashboard"
+views:
+  - title: "Living Room"
+    icon: mdi:sofa
+    cards:
+      # Sensor Data
+      - type: entities
+        title: "Sensor Data"
+        entities:
+          - entity: sensor.living_room_temperature
+            name: "Temperature"
+          - entity: sensor.living_room_humidity
+            name: "Humidity"
+          - entity: sensor.mq_2_gas_level
+            name: "Gas Level"
+          - entity: sensor.ldr_light_level
+            name: "Light Level"
+          - entity: binary_sensor.living_room_motion
+            name: "Motion Detected"
+            
+      # Device Controls
+      - type: grid
+        title: "Device Controls"
+        columns: 3
+        cards:
+          - type: button
+            entity: fan.living_room_fan
+            name: "Fan"
+            icon: mdi:fan
+            tap_action: { action: toggle }
+          - type: button
+            entity: switch.active_buzzer
+            name: "Buzzer"
+            icon: mdi:volume-high
+            tap_action: { action: toggle }
+          - type: button
+            entity: switch.indicator_led
+            name: "LED"
+            icon: mdi:led-on
+            tap_action: { action: toggle }
+
+      # Environment Trends (History)
+      - type: history-graph
+        title: "Environment Trends (Last 12 Hours)"
+        hours_to_show: 12
+        refresh_interval: 30
+        entities:
+          - entity: sensor.living_room_temperature
+          - entity: sensor.living_room_humidity
+          - entity: sensor.mq_2_gas_level
+
+      # Map Location (GPS Integration)
+      - type: map
+        title: "Smart IoT Sensor Map"
+        default_zoom: 15
+        entities:
+          - entity: sensor.living_room_temperature
+            name: "Living Room Sensor Node"
