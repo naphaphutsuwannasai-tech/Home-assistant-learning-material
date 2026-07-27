@@ -1,0 +1,31 @@
+sensor:
+  - platform: adc
+    pin: GPIO34
+    name: "MQ-2 Gas Sensor Analog"
+    id: mq2_sensor
+    update_interval: 2s
+    attenuation: 12db
+    filters:
+      - multiply: 3.3
+
+output:
+  - platform: gpio
+    pin: GPIO21
+    id: buzzer_output
+    inverted: true
+
+switch:
+  - platform: output
+    name: "Active Buzzer"
+    output: buzzer_output
+
+interval:
+  - interval: 2s
+    then:
+      - lambda: |-
+          const float threshold = 1.5;
+          if (id(mq2_sensor).state > threshold) {
+            id(buzzer_output).turn_on();
+          } else {
+            id(buzzer_output).turn_off();
+          }
