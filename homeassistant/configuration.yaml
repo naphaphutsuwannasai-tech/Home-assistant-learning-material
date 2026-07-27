@@ -1,1 +1,38 @@
-
+# Telegram Notification Setup
+telegram_bot:
+  - platform: polling
+    api_key: "YOUR_BOT_TOKEN_HERE" # เปลี่ยนเป็น Token ของคุณ
+    allowed_chat_ids:
+      - 987654321 # เปลี่ยนเป็น Chat ID ของคุณ
+notify:
+  - name: telegram
+    platform: telegram
+    chat_id: 987654321 # เปลี่ยนเป็น Chat ID ของคุณ
+# MariaDB Connection
+recorder:
+  db_url: mysql://admin:Home1122@mariadb/homeassistant?charset=utf8mb4
+  purge_keep_days: 7
+  commit_interval: 1
+# History and Logbook Config
+history:
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - fan
+      - switch
+logbook:
+  include:
+    domains:
+      - binary_sensor
+      - fan
+      - switch
+# Custom Lovelace Dashboard
+lovelace:
+  mode: yaml
+  dashboards:
+    smart-home-dashboard:
+      mode: yaml
+      title: "Smart Home Dashboard"
+      filename: lovelace-dashboard.yaml
+      icon: mdi:home-assistant
