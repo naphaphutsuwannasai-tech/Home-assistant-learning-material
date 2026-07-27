@@ -70,8 +70,41 @@ The platform demonstrates how to deploy a complete smart home ecosystem using Do
 
 # System Architecture
 
-![System Architecture](images/architecture.png)
+```mermaid
+graph TD
+    Start([START]) --> Admin[Admin Actions]
 
+    Admin --> Admin1[Install & Configure Home Assistant]
+    Admin --> Admin2[Install & Configure Sensors]
+    Admin --> Admin3[Connect Devices]
+    Admin --> Admin4[Create & Customize Dashboard]
+    Admin --> Teacher[Teacher Actions]
+
+    Teacher --> Teacher1[View Sensor Data]
+    Teacher --> Teacher2[Receive Notifications]
+    Teacher --> Teacher3[Introduce System to Students]
+    Teacher --> User[User Actions]
+
+    User --> User1[View Data from Sensors]
+    User --> User2[Receive Notifications via Telegram]
+    User --> User3[Control Devices via Home Assistant]
+    User --> User4[Smart Home Automation]
+
+    User3 --> End1[Control Devices]
+    User4 --> End2[Receive Commands]
+    End2 --> End([END])
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef startend fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    classDef admin fill:#ffebee,stroke:#d32f2f,stroke-width:2px;
+    classDef teacher fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px;
+    classDef userbox fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
+
+    class Start,End startend;
+    class Admin,Admin1,Admin2,Admin3,Admin4 admin;
+    class Teacher,Teacher1,Teacher2,Teacher3 teacher;
+    class User,User1,User2,User3,User4,End1,End2 userbox;
+```
 
 ---
 
@@ -85,7 +118,7 @@ The platform demonstrates how to deploy a complete smart home ecosystem using Do
 
 ### Clone Repository
 ```bash
-git clone https://github.com/naphaphutsuwannasai-tech/Home-assistant-learning-material.git
+git clone [https://github.com/naphaphutsuwannasai-tech/Home-assistant-learning-material.git](https://github.com/naphaphutsuwannasai-tech/Home-assistant-learning-material.git)
 cd Home-assistant-learning-material/docker
 ```
 
@@ -134,7 +167,6 @@ Home-assistant-learning-material/
 │   └── lab9_gps_mapping.yaml                  # Config: GPS coordinates assignment
 │
 ├── images/
-│   ├── architecture.png                       # System architecture diagram
 │   ├── dashboard.png                          # HA Lovelace dashboard preview
 │   ├── telegram-alert.png                     # Telegram notification preview
 │   └── hardware.jpg                           # Wiring and hardware setup photo
