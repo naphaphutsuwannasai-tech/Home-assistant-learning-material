@@ -1,1 +1,35 @@
-
+version: '3.9'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+    depends_on:
+      - mariadb
+  esphome:
+    container_name: esphome
+    image: ghcr.io/esphome/esphome
+    volumes:
+      - ./esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    ports:
+      - "6052:6052"
+  mariadb:
+    container_name: mariadb
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword1122
+      MYSQL_DATABASE: homeassistant
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Home1122
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
