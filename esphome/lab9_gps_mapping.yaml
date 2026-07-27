@@ -1,0 +1,18 @@
+sensor:
+  # การฝังพิกัด GPS เพื่อส่งไปแสดงบนแผนที่ Home Assistant
+  - platform: dht
+    pin: GPIO4
+    model: DHT11
+    temperature:
+      name: "Living Room Temperature"
+      id: temp_living
+      accuracy_decimals: 1
+      latitude: 19.9057
+      longitude: 99.8355
+    humidity:
+      name: "Living Room Humidity"
+      id: hum_living
+      accuracy_decimals: 1
+      latitude: 19.9057
+      longitude: 99.8355
+    update_interval: 10s
