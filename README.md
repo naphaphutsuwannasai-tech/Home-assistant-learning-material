@@ -71,7 +71,7 @@ The platform demonstrates how to deploy a complete smart home ecosystem using Do
 # System Architecture
 
 ![System Architecture](images/architecture.png)
-*(Note: Please refer to the `/diagrams/system-architecture.drawio` file for the complete topology.)*
+
 
 ---
 
@@ -85,7 +85,7 @@ The platform demonstrates how to deploy a complete smart home ecosystem using Do
 
 ### Clone Repository
 ```bash
-git clone [https://github.com/naphaphutsuwannasai-tech/Home-assistant-learning-material.git](https://github.com/naphaphutsuwannasai-tech/Home-assistant-learning-material.git)
+git clone https://github.com/naphaphutsuwannasai-tech/Home-assistant-learning-material.git
 cd Home-assistant-learning-material/docker
 ```
 
@@ -117,36 +117,38 @@ docker compose up -d
 ```text
 Home-assistant-learning-material/
 │
-├── README.md                     # Project overview
-├── LICENSE                       # Open-source license
-├── .gitignore                    # Ignored files for Git
+├── README.md                                  # Project overview
 │
 ├── docker/
-│   └── docker-compose.yml        # Docker config for HA, ESPHome, and MariaDB
+│   └── docker-compose.yml                     # Docker config for HA, ESPHome, and MariaDB
 │
 ├── homeassistant/
-│   ├── configuration.yaml        # Main HA config and database connection
-│   ├── automations.yaml          # Logic for Telegram alerts and device control
-│   └── lovelace-dashboard.yaml   # UI layout and custom cards
+│   ├── configuration.yaml                     # Main HA config and database connection
+│   ├── automations.yaml                       # Logic for Telegram alerts and device control
+│   └── lovelace-dashboard.yaml                # UI layout and custom cards
 │
 ├── esphome/
-│   ├── lab2_dht_fan.yaml         # Config: Temperature sensing and Fan control
-│   ├── lab3_mq2_buzzer.yaml      # Config: Gas detection and Alarm
-│   ├── lab4_ldr_pir_led.yaml     # Config: Light/Motion sensing and LED control
-│   └── lab9_gps_mapping.yaml     # Config: GPS coordinates assignment
+│   ├── lab2_dht_fan.yaml                      # Config: Temperature sensing and Fan control
+│   ├── lab3_mq2_buzzer.yaml                   # Config: Gas detection and Alarm
+│   ├── lab4_ldr_pir_led.yaml                  # Config: Light/Motion sensing and LED control
+│   └── lab9_gps_mapping.yaml                  # Config: GPS coordinates assignment
 │
 ├── images/
-│   ├── architecture.png          # System architecture diagram
-│   ├── dashboard.png             # HA Lovelace dashboard preview
-│   ├── telegram-alert.png        # Telegram notification preview
-│   └── hardware.jpg              # Wiring and hardware setup photo
+│   ├── architecture.png                       # System architecture diagram
+│   ├── dashboard.png                          # HA Lovelace dashboard preview
+│   ├── telegram-alert.png                     # Telegram notification preview
+│   └── hardware.jpg                           # Wiring and hardware setup photo
 │
-├── docs/
-│   ├── Learning_Material.pdf     # Official project documentation
-│   └── User_Manual.pdf           # Step-by-step lab instructions
-│
-└── diagrams/
-    └── system-architecture.drawio
+└── docs/                                      # Lab Manuals & Documentation
+    ├── Lab1_Install_and_Setup.pdf
+    ├── Lab2_Integration_of_Sensors.pdf
+    ├── Lab3_Integration_of_Sensors.pdf
+    ├── Lab4_Integration_of_Sensors.pdf
+    ├── Lab5_Organizing_the_Overview.pdf
+    ├── Lab6_Smart_Notification_System.pdf
+    ├── Lab7_Location-Based_Smart_Notification.pdf
+    ├── Lab8_Smart_Alert_Logging.pdf
+    └── Lab9_GPS_Integration.pdf
 ```
 
 ---
