@@ -1,0 +1,39 @@
+output:
+  - platform: gpio
+    pin: GPIO13
+    id: led_output
+
+sensor:
+  - platform: adc
+    pin: GPIO35
+    name: "LDR Analog"
+    id: ldr_analog
+    update_interval: 1s
+    attenuation: 11db
+    filters:
+      - multiply: 3.3
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO14
+    name: "Living Room Motion"
+    device_class: motion
+
+  - platform: gpio
+    pin: GPIO26
+    name: "LDR Digital"
+    id: ldr_digital
+    device_class: light
+
+interval:
+  - interval: 1s
+    then:
+      - if:
+          condition:
+            sensor.in_range:
+              id: ldr_analog
+              above: 2.0
+          then:
+            - output.turn_off: led_output
+          else:
+            - output.turn_on: led_output
