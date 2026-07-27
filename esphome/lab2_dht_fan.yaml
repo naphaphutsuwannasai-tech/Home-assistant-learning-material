@@ -1,0 +1,42 @@
+sensor:
+  - platform: dht
+    pin: 22
+    model: DHT11
+    temperature:
+      name: "Room Temperature"
+      id: temperature
+      unit_of_measurement: "°C"
+    humidity:
+      name: "Room Humidity"
+      id: humidity
+      unit_of_measurement: "%"
+    update_interval: 10s
+
+output:
+  - platform: ledc
+    pin: 25
+    id: fan_pwm
+    frequency: 25000 Hz
+    inverted: true
+
+fan:
+  - platform: speed
+    name: "DC Fan"
+    id: dc_fan
+    output: fan_pwm
+    speed_count: 100
+    restore_mode: ALWAYS_OFF
+
+interval:
+  - interval: 10s
+    then:
+      - lambda: |-
+          if (id(temperature).has_state()) {
+            float t = id(temperature).state;
+            if (t >= 30.0) {
+              id(dc_fan).turn_on();
+              id(dc_fan).speed = 1.0;
+            } else if (t < 27.0) {
+              id(dc_fan).turn_off();
+            }
+          }
