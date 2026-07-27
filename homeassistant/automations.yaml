@@ -1,0 +1,47 @@
+# Auto Fan Control
+- alias: "Auto Fan Control"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.living_room_temperature
+      above: 30
+  action:
+    - service: fan.turn_on
+      entity_id: fan.living_room_fan
+
+# Auto Light When Motion in Darkness
+- alias: "Auto Light When Motion"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      to: "on"
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.ldr_light_level
+      below: 0.7
+  action:
+    - service: light.turn_on
+      entity_id: light.room_light
+      
+# Location-Based Smart Unified Alert (Telegram)
+- alias: "Smart Combined Alert"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.gas_alarm_active
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      to: "on"
+    - platform: numeric_state
+      entity_id: sensor.living_room_temperature
+      above: 32
+  action:
+    - service: notify.telegram
+      data:
+        message: >
+          🚨 *Smart Home Alert* 🚨
+          Time: {{ now().strftime('%H:%M:%S') }}
+          Temperature: {{ states('sensor.living_room_temperature') }} °C
+          Gas Level: {{ states('sensor.mq_2_gas_level') }} V
+          Motion: {{ states('binary_sensor.living_room_motion') }}
+          Location: Living Room
+          [View on Map](https://maps.google.com/?q=19.9057,99.8355)
